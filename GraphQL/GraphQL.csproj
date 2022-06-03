@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="6.1.0" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="12.10.0" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="12.10.0" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
