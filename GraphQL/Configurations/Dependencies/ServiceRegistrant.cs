@@ -1,4 +1,6 @@
 ﻿using Todo.Api.Data.Configurations.Dependencies;
+using Todo.Api.GraphQL.Mutations;
+using Todo.Api.GraphQL.Queries;
 
 namespace Todo.Api.GraphQL.Configurations.Dependencies
 {
@@ -14,6 +16,8 @@ namespace Todo.Api.GraphQL.Configurations.Dependencies
                .AddDefaultTransactionScopeHandler()
                .AddQueryType()
                .AddMutationType()
+               .AddTypeExtension<TempQueries>()
+               .AddTypeExtension<AuthMutations>()
                .AddProjections();
         }
     }
