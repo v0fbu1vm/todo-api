@@ -10,7 +10,7 @@
         /// <summary>
         /// Represents whether an operation was a success or not.
         /// </summary>
-        public bool Success { get; private set; }
+        public bool Succeeded { get; private set; }
         /// <summary>
         /// The data returned from the operation.
         /// </summary>
@@ -18,7 +18,7 @@
         /// <summary>
         /// Used for providing detailes about an operation. Incase of failure.
         /// </summary>
-        public OperationFailure Failure { get; private set; } = default!;
+        public OperationFailure Fault { get; private set; } = default!;
         /// <summary>
         /// Represents that the operation was a success.
         /// </summary>
@@ -26,11 +26,11 @@
         /// <returns>
         /// An <see cref="OperationResult{T}"/> object.
         /// </returns>
-        public static OperationResult<T> IsSuccess(T result)
+        public static OperationResult<T> Success(T result)
         {
             return new OperationResult<T>()
             {
-                Success = true,
+                Succeeded = true,
                 Result = result
             };
         }
@@ -43,12 +43,12 @@
         /// <returns>
         /// An <see cref="OperationResult{T}"/> object.
         /// </returns>
-        public static OperationResult<T> IsFailure(short errorCode, string message)
+        public static OperationResult<T> Failure(short errorCode, string message)
         {
             return new OperationResult<T>()
             {
-                Success = false,
-                Failure = new OperationFailure()
+                Succeeded = false,
+                Fault = new OperationFailure()
                 {
                     ErrorCode = errorCode,
                     ErrorMessage = message,

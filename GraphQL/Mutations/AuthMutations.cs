@@ -2,6 +2,7 @@
 using Todo.Api.Data.Data.Models.Register;
 using Todo.Api.Data.Data.Models.Response;
 using Todo.Api.Data.Data.Models.Token;
+using Todo.Api.Data.Data.Objects;
 using Todo.Api.Data.Services;
 
 namespace Todo.Api.GraphQL.Mutations
@@ -22,15 +23,16 @@ namespace Todo.Api.GraphQL.Mutations
         {
             var result = await service.SignInAsync(request);
 
-            if (result.Success)
+            if (result.Succeeded)
             {
                 return Response<Token>.Ok(result: result.Result);
             }
 
-            return result.Failure.ErrorCode switch
+            return result.Fault.ErrorCode switch
             {
-                StatusCodes.Status404NotFound => Response<Token>.NotFound(result.Failure.ErrorMessage),
-                _ => Response<Token>.BadRequest(result.Failure.ErrorMessage),
+                ExceptionCodes.Code404NotFound => Response<Token>.NotFound(result.Fault.ErrorMessage),
+                ExceptionCodes.Code401Unauthorized => Response<Token>.Unauthorized(result.Fault.ErrorMessage),
+                _ => Response<Token>.BadRequest(result.Fault.ErrorMessage),
             };
         }
         #endregion
@@ -48,12 +50,12 @@ namespace Todo.Api.GraphQL.Mutations
         {
             var result = await service.RegisterAsync(request);
 
-            if (result.Success)
+            if (result.Succeeded)
             {
                 return Response<Token>.Created(result: result.Result);
             }
 
-            return Response<Token>.BadRequest(result.Failure.ErrorMessage);
+            return Response<Token>.BadRequest(result.Fault.ErrorMessage);
         }
         #endregion
     }

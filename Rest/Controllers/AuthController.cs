@@ -2,6 +2,7 @@
 using Todo.Api.Data.Data.Models.Login;
 using Todo.Api.Data.Data.Models.Register;
 using Todo.Api.Data.Data.Models.Token;
+using Todo.Api.Data.Data.Objects;
 using Todo.Api.Data.Services;
 
 namespace Todo.Api.Rest.Controllers
@@ -30,15 +31,16 @@ namespace Todo.Api.Rest.Controllers
         {
             var result = await _service.SignInAsync(request);
 
-            if (result.Success)
+            if (result.Succeeded)
             {
                 return Ok(result.Result);
             }
 
-            return result.Failure.ErrorCode switch
+            return result.Fault.ErrorCode switch
             {
-                StatusCodes.Status404NotFound => NotFound(result.Failure.ErrorMessage),
-                _ => BadRequest(result.Failure.ErrorMessage),
+                ExceptionCodes.Code404NotFound => NotFound(result.Fault.ErrorMessage),
+                ExceptionCodes.Code401Unauthorized => Unauthorized(result.Fault.ErrorMessage),
+                _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
         #endregion
@@ -56,7 +58,7 @@ namespace Todo.Api.Rest.Controllers
         {
             var result = await _service.RegisterAsync(request);
 
-            if (result.Success)
+            if (result.Succeeded)
             {
                 return new ObjectResult(result.Result)
                 {
@@ -64,7 +66,7 @@ namespace Todo.Api.Rest.Controllers
                 };
             }
 
-            return BadRequest(result.Failure.ErrorMessage);
+            return BadRequest(result.Fault.ErrorMessage);
         }
         #endregion
     }

@@ -63,7 +63,17 @@ namespace Todo.Api.Data.Data.Models.Response
             {
                 Succeeded = false,
                 Message = message,
-                StatusCode = StatusCodes.Status404NotFound
+                StatusCode = StatusCodes.Status400BadRequest
+            };
+        }
+
+        public static Response<T> Unauthorized(string? message)
+        {
+            return new Response<T>()
+            {
+                Succeeded = false,
+                Message = message ?? "Unauthorized.",
+                StatusCode = StatusCodes.Status401Unauthorized
             };
         }
     }

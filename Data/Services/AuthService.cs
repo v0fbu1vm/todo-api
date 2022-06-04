@@ -5,6 +5,7 @@ using Todo.Api.Data.Data.Models.Login;
 using Todo.Api.Data.Data.Models.Register;
 using Todo.Api.Data.Data.Models.Result;
 using Todo.Api.Data.Data.Models.Token;
+using Todo.Api.Data.Data.Objects;
 using Todo.Api.Data.Extensions;
 using Todo.Api.Data.Helpers;
 
@@ -36,8 +37,9 @@ namespace Todo.Api.Data.Services
         /// </returns>
         /// <remarks> Produces error codes.
         /// <list type="table">
-        /// <item><see cref="StatusCodes.Status404NotFound"/></item>
-        /// <item><see cref="StatusCodes.Status400BadRequest"/></item>
+        /// <item><see cref="ExceptionCodes.Code401Unauthorized"/></item>
+        /// <item><see cref="ExceptionCodes.Code404NotFound"/></item>
+        /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
         /// </list>
         /// </remarks>
         public async Task<OperationResult<Token>> SignInAsync(LoginRequest request)
@@ -55,16 +57,16 @@ namespace Todo.Api.Data.Services
 
                     if (result.Succeeded)
                     {
-                        return OperationResult<Token>.IsSuccess(_tokenProvider.GenerateToken(user));
+                        return OperationResult<Token>.Success(_tokenProvider.GenerateToken(user));
                     }
 
-                    return OperationResult<Token>.IsFailure(StatusCodes.Status400BadRequest, "Authentication failed.");
+                    return OperationResult<Token>.Failure(ExceptionCodes.Code401Unauthorized, "Authentication failed.");
                 }
 
-                return OperationResult<Token>.IsFailure(StatusCodes.Status404NotFound, "User not found.");
+                return OperationResult<Token>.Failure(ExceptionCodes.Code404NotFound, "User not found.");
             }
 
-            return OperationResult<Token>.IsFailure(StatusCodes.Status400BadRequest, validationResult.ErrorMessage());
+            return OperationResult<Token>.Failure(ExceptionCodes.Code400BadRequest, validationResult.ErrorMessage());
         }
         #endregion
 
@@ -78,7 +80,7 @@ namespace Todo.Api.Data.Services
         /// </returns>
         /// <remarks> Produces error codes.
         /// <list type="table">
-        /// <item><see cref="StatusCodes.Status400BadRequest"/></item>
+        /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
         /// </list>
         /// </remarks>
         public async Task<OperationResult<Token>> RegisterAsync(RegisterRequest request)
@@ -101,13 +103,13 @@ namespace Todo.Api.Data.Services
                 {
                     var user = await _userManager.FindByEmailAsync(request.Email);
 
-                    return OperationResult<Token>.IsSuccess(_tokenProvider.GenerateToken(user));
+                    return OperationResult<Token>.Success(_tokenProvider.GenerateToken(user));
                 }
 
-                return OperationResult<Token>.IsFailure(StatusCodes.Status400BadRequest, result.ErrorMessage());
+                return OperationResult<Token>.Failure(StatusCodes.Status400BadRequest, result.ErrorMessage());
             }
 
-            return OperationResult<Token>.IsFailure(StatusCodes.Status400BadRequest, validationResult.ErrorMessage());
+            return OperationResult<Token>.Failure(StatusCodes.Status400BadRequest, validationResult.ErrorMessage());
         }
         #endregion
     }

@@ -21,6 +21,7 @@ namespace Todo.Api.Data.Configurations.Dependencies
             services.AddSingleton<TokenProvider>();
 
             services.AddTransient<AuthService>();
+            services.AddTransient<CollectionService>();
 
             services.AddFluentValidation(options => options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssembliesForProjects()));
         }
