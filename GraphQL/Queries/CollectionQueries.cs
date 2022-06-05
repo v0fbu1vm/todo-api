@@ -9,7 +9,7 @@ namespace Todo.Api.GraphQL.Queries
     {
         #region GetCollectionByIdAsync
         /// <summary>
-        /// Gets a collection by id.
+        /// Gets a <see cref="Collection"/> by id.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <param name="service">A service for <see cref="Collection"/> related operations.</param>
@@ -25,7 +25,7 @@ namespace Todo.Api.GraphQL.Queries
 
         #region GetCollectionByNameAsync
         /// <summary>
-        /// Gets a collection by id.
+        /// Gets a <see cref="Collection"/> by id.
         /// </summary>
         /// <param name="name">Represents the id of the <see cref="Collection"/>.</param>
         /// <param name="service">A service for <see cref="Collection"/> related operations.</param>

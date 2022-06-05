@@ -12,7 +12,7 @@ namespace Todo.Api.GraphQL.Mutations
     {
         #region CreateCollectionAsync
         /// <summary>
-        /// Adds a new collection.
+        /// Adds a new <see cref="Collection"/>.
         /// </summary>
         /// <param name="request">Represents the required data for creating a new <see cref="Collection"/>.</param>
         /// <param name="service">A service for <see cref="Collection"/> related operations.</param>
@@ -31,7 +31,7 @@ namespace Todo.Api.GraphQL.Mutations
 
             return result.Fault.ErrorCode switch
             {
-                ExceptionCodes.Code401Unauthorized => Response<Collection>.Unauthorized(result.Fault.ErrorMessage),
+                ExceptionCodes.Code500Problem => Response<Collection>.Problem(result.Fault.ErrorMessage),
                 _ => Response<Collection>.BadRequest(result.Fault.ErrorMessage),
             };
         }
@@ -39,7 +39,7 @@ namespace Todo.Api.GraphQL.Mutations
 
         #region UpdateCollectionAsync
         /// <summary>
-        /// Updates a collection.
+        /// Updates a <see cref="Collection"/>.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <param name="request">Represents the required data for updating a <see cref="Collection"/>.</param>
@@ -67,7 +67,7 @@ namespace Todo.Api.GraphQL.Mutations
 
         #region DeleteCollectionAsync
         /// <summary>
-        /// Deletes a collection.
+        /// Deletes a <see cref="Collection"/>.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <param name="service">A service for <see cref="Collection"/> related operations.</param>

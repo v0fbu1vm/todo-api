@@ -22,6 +22,7 @@ namespace Todo.Api.Data.Configurations.Dependencies
 
             services.AddTransient<AuthService>();
             services.AddTransient<CollectionService>();
+            services.AddTransient<AssignmentService>();
 
             services.AddFluentValidation(options => options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssembliesForProjects()));
         }

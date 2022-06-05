@@ -87,5 +87,15 @@ namespace Todo.Api.Data.Data.Models.Response
                 StatusCode = StatusCodes.Status401Unauthorized
             };
         }
+
+        public static Response<T> Problem(string message = "Something unexpected occurred.")
+        {
+            return new Response<T>()
+            {
+                Succeeded = false,
+                Message = message,
+                StatusCode = StatusCodes.Status500InternalServerError
+            };
+        }
     }
 }

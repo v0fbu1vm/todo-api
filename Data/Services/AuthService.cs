@@ -36,7 +36,7 @@ namespace Todo.Api.Data.Services
         /// An <see cref="OperationResult{Token}"/>, containing the details of operation.
         /// </returns>
         /// <remarks> Produces error codes.
-        /// <list type="table">
+        /// <list type="bullet">
         /// <item><see cref="ExceptionCodes.Code401Unauthorized"/></item>
         /// <item><see cref="ExceptionCodes.Code404NotFound"/></item>
         /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
@@ -79,7 +79,7 @@ namespace Todo.Api.Data.Services
         /// An <see cref="OperationResult{Token}"/>, containing the details of operation.
         /// </returns>
         /// <remarks> Produces error codes.
-        /// <list type="table">
+        /// <list type="bullet">
         /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
         /// </list>
         /// </remarks>

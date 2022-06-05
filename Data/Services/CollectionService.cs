@@ -18,7 +18,7 @@ namespace Todo.Api.Data.Services
 
         #region GetCollectionByIdAsync
         /// <summary>
-        /// Gets a collection by id.
+        /// Gets a <see cref="Collection"/> by id.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>.
         /// <returns>
@@ -34,7 +34,7 @@ namespace Todo.Api.Data.Services
 
         #region GetCollectionByNameAsync
         /// <summary>
-        /// Gets a collection by name.
+        /// Gets a <see cref="Collection"/> by name.
         /// </summary>
         /// <param name="id">Represents the name of the <see cref="Collection"/>.</param>.
         /// <returns>
@@ -65,15 +65,15 @@ namespace Todo.Api.Data.Services
 
         #region CreateCollectionAsync
         /// <summary>
-        /// Adds a new collection.
+        /// Adds a new <see cref="Collection"/>.
         /// </summary>
         /// <param name="request">Represents the required data for creating a new <see cref="Collection"/>.</param>
         /// <returns>
         /// An <see cref="OperationResult{Collection}"/>, containing the details of operation.
         /// </returns>
         /// <remarks> Produces error codes.
-        /// <list type="table">
-        /// <item><see cref="ExceptionCodes.Code401Unauthorized"/></item>
+        /// <list type="bullet">
+        /// <item><see cref="ExceptionCodes.Code500Problem"/></item>
         /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
         /// </list>
         /// </remarks>
@@ -101,7 +101,7 @@ namespace Todo.Api.Data.Services
                     }
                     catch (Exception)
                     {
-                        return OperationResult<Collection>.Failure(ExceptionCodes.Code401Unauthorized, "Unable to identify user.");
+                        return OperationResult<Collection>.Failure(ExceptionCodes.Code500Problem, "Something unexpected occurred.");
                     }
                 }
 
@@ -114,7 +114,7 @@ namespace Todo.Api.Data.Services
 
         #region UpdateCollectionAsync
         /// <summary>
-        /// Updates a collection.
+        /// Updates a <see cref="Collection"/>.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <param name="request">Represents the required data updating a <see cref="Collection"/>.</param>
@@ -122,7 +122,7 @@ namespace Todo.Api.Data.Services
         /// An <see cref="OperationResult{Collection}"/>, containing the details of operation.
         /// </returns>
         /// <remarks> Produces error codes.
-        /// <list type="table">
+        /// <list type="bullet">
         /// <item><see cref="ExceptionCodes.Code404NotFound"/></item>
         /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
         /// </list>
@@ -165,14 +165,14 @@ namespace Todo.Api.Data.Services
 
         #region DeleteCollectionAsync
         /// <summary>
-        /// Deletes a collection.
+        /// Deletes a <see cref="Collection"/>.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <returns>
         /// An <see cref="OperationResult{Boolean}"/>, containing the details of operation.
         /// </returns>
         /// <remarks> Produces error codes.
-        /// <list type="table">
+        /// <list type="bullet">
         /// <item><see cref="ExceptionCodes.Code404NotFound"/></item>
         /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
         /// </list>
@@ -196,6 +196,7 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<bool>.Failure(ExceptionCodes.Code400BadRequest, "Invalid id");
         }
+        #endregion
 
         #region NameExistsAsync
         /// <summary>
@@ -211,5 +212,4 @@ namespace Todo.Api.Data.Services
         }
         #endregion
     }
-    #endregion
 }

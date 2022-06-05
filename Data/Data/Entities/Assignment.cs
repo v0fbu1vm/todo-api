@@ -18,7 +18,7 @@
         /// </summary>
         public DateTime DateScheduled { get; set; } = DateTime.UtcNow;
         /// <summary>
-        /// Represents whether an assignment is comlete or not.
+        /// Represents whether an assignment is complete or not.
         /// </summary>
         public bool IsCompleted { get; set; } = false;
         /// <summary>

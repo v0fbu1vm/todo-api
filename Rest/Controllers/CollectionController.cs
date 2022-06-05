@@ -21,7 +21,7 @@ namespace Todo.Api.Rest.Controllers
 
         #region GetCollectionByIdAsync
         /// <summary>
-        /// Gets a collection by id.
+        /// Gets a <see cref="Collection"/> by id.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <returns>
@@ -39,7 +39,7 @@ namespace Todo.Api.Rest.Controllers
 
         #region GetCollectionByNameAsync
         /// <summary>
-        /// Gets a collection by name.
+        /// Gets a <see cref="Collection"/> by name.
         /// </summary>
         /// <param name="name">Represents the name of the <see cref="Collection"/>.</param>
         /// <returns>
@@ -72,7 +72,7 @@ namespace Todo.Api.Rest.Controllers
 
         #region CreateCollectionAsync
         /// <summary>
-        /// Adds a new collection.
+        /// Adds a new <see cref="Collection"/>.
         /// </summary>
         /// <param name="request">Represents the required data for creating a new <see cref="Collection"/>.</param>
         /// <returns>
@@ -80,7 +80,7 @@ namespace Todo.Api.Rest.Controllers
         /// the newly created <see cref="Collection"/> is imbedded within it.
         /// </returns>
         [HttpPost]
-        public async Task<IActionResult> CreateCollectionAsync(CreateCollectionRequest request)
+        public async Task<IActionResult> CreateCollectionAsync([FromBody] CreateCollectionRequest request)
         {
             var result = await _service.CreateCollectionAsync(request);
 
@@ -94,7 +94,7 @@ namespace Todo.Api.Rest.Controllers
 
             return result.Fault.ErrorCode switch
             {
-                ExceptionCodes.Code401Unauthorized => Unauthorized(result.Fault.ErrorMessage),
+                ExceptionCodes.Code500Problem => Problem(result.Fault.ErrorMessage),
                 _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
@@ -102,7 +102,7 @@ namespace Todo.Api.Rest.Controllers
 
         #region UpdateCollectionAsync
         /// <summary>
-        /// Updates a collection.
+        /// Updates a <see cref="Collection"/>.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <param name="request">Represents the required data for updating a <see cref="Collection"/>.</param>
@@ -130,7 +130,7 @@ namespace Todo.Api.Rest.Controllers
 
         #region DeleteCollectionAsync
         /// <summary>
-        /// Deletes a collection.
+        /// Deletes a <see cref="Collection"/>.
         /// </summary>
         /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
         /// <returns>
