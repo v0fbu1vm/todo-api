@@ -16,6 +16,6 @@
         /// <summary>
         /// Error code 401.
         /// </summary>
-        public const short Code401Unauthorized = 1002;
+        public const short Code401Unauthorized = 401;
     }
 }

@@ -13,7 +13,55 @@ namespace Todo.Api.Data.Services
     {
         public CollectionService(IDbContextFactory<DatabaseContext> dbContextFactory, IHttpContextAccessor contextAccessor) : base(dbContextFactory, contextAccessor)
         {
+
         }
+
+        #region GetCollectionByIdAsync
+        /// <summary>
+        /// Gets a collection by id.
+        /// </summary>
+        /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>.
+        /// <returns>
+        /// A <see cref="Collection"/> if found.
+        /// </returns>
+        public async Task<Collection?> GetCollectionByIdAsync(string id)
+        {
+            return Guid.TryParse(id, out _) ? await _dbContext.Collections.AsNoTracking()
+                .FirstOrDefaultAsync(options => options.Id == id && options.UserId == UserId())
+                : null;
+        }
+        #endregion
+
+        #region GetCollectionByNameAsync
+        /// <summary>
+        /// Gets a collection by name.
+        /// </summary>
+        /// <param name="id">Represents the name of the <see cref="Collection"/>.</param>.
+        /// <returns>
+        /// A <see cref="Collection"/> if found.
+        /// </returns>
+        public async Task<Collection?> GetCollectionByNameAsync(string name)
+        {
+            return string.IsNullOrEmpty(name) is false ? await _dbContext.Collections.AsNoTracking()
+                .FirstOrDefaultAsync(options => options.Name == name && options.UserId == UserId())
+                : null;
+        }
+        #endregion
+
+        #region GetCollectionsAsync
+        /// <summary>
+        /// Gets a list of <see cref="Collection"/>.
+        /// </summary>
+        /// <returns>
+        /// A list of <see cref="Collection"/>'s.
+        /// </returns>
+        public async Task<ICollection<Collection>> GetCollectionsAsync()
+        {
+            return await _dbContext.Collections.AsNoTracking()
+                .Where(options => options.UserId == UserId())
+                .ToListAsync();
+        }
+        #endregion
 
         #region CreateCollectionAsync
         /// <summary>
@@ -36,7 +84,7 @@ namespace Todo.Api.Data.Services
 
             if (validationResult.IsValid)
             {
-                if(await NameExistsAsync(request.Name) is false)
+                if (await NameExistsAsync(request.Name) is false)
                 {
                     try
                     {
@@ -64,6 +112,91 @@ namespace Todo.Api.Data.Services
         }
         #endregion
 
+        #region UpdateCollectionAsync
+        /// <summary>
+        /// Updates a collection.
+        /// </summary>
+        /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
+        /// <param name="request">Represents the required data updating a <see cref="Collection"/>.</param>
+        /// <returns>
+        /// An <see cref="OperationResult{Collection}"/>, containing the details of operation.
+        /// </returns>
+        /// <remarks> Produces error codes.
+        /// <list type="table">
+        /// <item><see cref="ExceptionCodes.Code404NotFound"/></item>
+        /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
+        /// </list>
+        /// </remarks>
+        public async Task<OperationResult<Collection>> UpdateCollectionAsync(string id, UpdateCollectionRequest request)
+        {
+            var validator = new UpdateCollectionValidator();
+            var validationResult = validator.Validate(request);
+
+            if (validationResult.IsValid)
+            {
+                if (Guid.TryParse(id, out _) && id == request.Id)
+                {
+                    var collection = await _dbContext.Collections.FirstOrDefaultAsync(options => options.Id == id && options.UserId == UserId());
+
+                    if (collection != null)
+                    {
+                        if (await NameExistsAsync(request.Name) is false)
+                        {
+                            collection.Name = request.Name;
+                            collection.DateModified = DateTime.UtcNow;
+
+                            await _dbContext.SaveChangesAsync();
+
+                            return OperationResult<Collection>.Success(collection);
+                        }
+
+                        return OperationResult<Collection>.Failure(ExceptionCodes.Code400BadRequest, "Name already exists.");
+                    }
+
+                    return OperationResult<Collection>.Failure(ExceptionCodes.Code404NotFound, "Not found.");
+                }
+
+                return OperationResult<Collection>.Failure(ExceptionCodes.Code400BadRequest, "Invalid Id.");
+            }
+
+            return OperationResult<Collection>.Failure(ExceptionCodes.Code400BadRequest, validationResult.ErrorMessage());
+        }
+        #endregion
+
+        #region DeleteCollectionAsync
+        /// <summary>
+        /// Deletes a collection.
+        /// </summary>
+        /// <param name="id">Represents the id of the <see cref="Collection"/>.</param>
+        /// <returns>
+        /// An <see cref="OperationResult{Boolean}"/>, containing the details of operation.
+        /// </returns>
+        /// <remarks> Produces error codes.
+        /// <list type="table">
+        /// <item><see cref="ExceptionCodes.Code404NotFound"/></item>
+        /// <item><see cref="ExceptionCodes.Code400BadRequest"/></item>
+        /// </list>
+        /// </remarks>
+        public async Task<OperationResult<bool>> DeleteCollectionAsync(string id)
+        {
+            if (Guid.TryParse(id, out _))
+            {
+                var collection = await _dbContext.Collections.FirstOrDefaultAsync(options => options.Id == id && options.UserId == UserId());
+
+                if (collection != null)
+                {
+                    _dbContext.Collections.Remove(collection);
+                    await _dbContext.SaveChangesAsync();
+
+                    return OperationResult<bool>.Success(true);
+                }
+
+                return OperationResult<bool>.Failure(ExceptionCodes.Code404NotFound, "Collection not found.");
+            }
+
+            return OperationResult<bool>.Failure(ExceptionCodes.Code400BadRequest, "Invalid id");
+        }
+
         #region NameExistsAsync
         /// <summary>
         /// Checks whether a <see cref="Collection"/> with a certain name exists.
@@ -78,4 +211,5 @@ namespace Todo.Api.Data.Services
         }
         #endregion
     }
+    #endregion
 }

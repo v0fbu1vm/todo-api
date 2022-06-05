@@ -17,9 +17,9 @@ namespace Todo.Api.GraphQL.Configurations.Dependencies
                .AddDefaultTransactionScopeHandler()
                .AddQueryType()
                .AddMutationType()
-               .AddTypeExtension<TempQueries>()
                .AddTypeExtension<AuthMutations>()
                .AddTypeExtension<CollectionMutations>()
+               .AddTypeExtension<CollectionQueries>()
                .AddType<UserType>()
                .AddType<CollectionType>()
                .AddProjections();

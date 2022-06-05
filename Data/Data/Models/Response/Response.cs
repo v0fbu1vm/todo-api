@@ -47,12 +47,23 @@ namespace Todo.Api.Data.Data.Models.Response
             };
         }
 
-        public static Response<T> NotFound(string? message)
+        public static Response<T> NoContent(T result, string message = "The record successfully deleted.")
+        {
+            return new Response<T>()
+            {
+                Succeeded = true,
+                Data = result,
+                Message = message,
+                StatusCode = StatusCodes.Status204NoContent
+            };
+        }
+
+        public static Response<T> NotFound(string message = "The record could not be found.")
         {
             return new Response<T>()
             {
                 Succeeded = false,
-                Message = message ?? "The record could not be found.",
+                Message = message,
                 StatusCode = StatusCodes.Status404NotFound
             };
         }
@@ -67,12 +78,12 @@ namespace Todo.Api.Data.Data.Models.Response
             };
         }
 
-        public static Response<T> Unauthorized(string? message)
+        public static Response<T> Unauthorized(string message = "Unauthorized.")
         {
             return new Response<T>()
             {
                 Succeeded = false,
-                Message = message ?? "Unauthorized.",
+                Message = message,
                 StatusCode = StatusCodes.Status401Unauthorized
             };
         }
