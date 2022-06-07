@@ -34,7 +34,7 @@ namespace Todo.Api.GraphQL.Resolvers
         /// </returns>
         public Collection? GetCollection([Parent] Assignment assignment, [ScopedService] DatabaseContext context)
         {
-            return context.Collections.FirstOrDefault(options => options.Id == assignment.UserId);
+            return context.Collections.FirstOrDefault(options => options.Id == assignment.CollectionId);
         }
         #endregion
     }

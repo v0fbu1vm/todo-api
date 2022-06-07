@@ -25,7 +25,7 @@ namespace Todo.Api.GraphQL.Resolvers
 
         #region GetAssignments
         /// <summary>
-        /// Gets a list of <see cref="Assignment"/>'s contained within this collection.
+        /// Gets a list of <see cref="Assignment"/>'s contained within this <paramref name="collection"/>.
         /// </summary>
         /// <param name="collection">Represents a <see cref="Collection"/>.</param>
         /// <param name="context">DbContext for querying and mutating data.</param>

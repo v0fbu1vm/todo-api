@@ -21,6 +21,7 @@ namespace Todo.Api.GraphQL.Configurations.Dependencies
                .AddTypeExtension<CollectionMutations>()
                .AddTypeExtension<AssignmentMutations>()
                .AddTypeExtension<CollectionQueries>()
+               .AddTypeExtension<AssignmentQueries>()
                .AddType<UserType>()
                .AddType<CollectionType>()
                .AddType<AssignmentType>()
