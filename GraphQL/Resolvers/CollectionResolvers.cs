@@ -32,9 +32,9 @@ namespace Todo.Api.GraphQL.Resolvers
         /// <returns>
         /// A list of <see cref="Assignment"/>'s.
         /// </returns>
-        public ICollection<Assignment> GetAssignments([Parent] Collection collection, [ScopedService] DatabaseContext context)
+        public IQueryable<Assignment> GetAssignments([Parent] Collection collection, [ScopedService] DatabaseContext context)
         {
-            return context.Assignments.Where(options => options.CollectionId == collection.Id).ToList();
+            return context.Assignments.Where(options => options.CollectionId == collection.Id).AsQueryable();
         }
         #endregion
     }

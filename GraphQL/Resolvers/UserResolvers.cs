@@ -17,9 +17,9 @@ namespace Todo.Api.GraphQL.Resolvers
         /// <returns>
         /// A list of <see cref="Assignment"/>'s.
         /// </returns>
-        public ICollection<Assignment> GetAssignments([Parent] User user, [ScopedService] DatabaseContext context)
+        public IQueryable<Assignment> GetAssignments([Parent] User user, [ScopedService] DatabaseContext context)
         {
-            return context.Assignments.Where(options => options.UserId == user.Id).ToList();
+            return context.Assignments.Where(options => options.UserId == user.Id).AsQueryable();
         }
         #endregion
 
@@ -32,9 +32,9 @@ namespace Todo.Api.GraphQL.Resolvers
         /// <returns>
         /// A list of <see cref="Collection"/>'s.
         /// </returns>
-        public ICollection<Collection> GetCollections([Parent] User user, [ScopedService] DatabaseContext context)
+        public IQueryable<Collection> GetCollections([Parent] User user, [ScopedService] DatabaseContext context)
         {
-            return context.Collections.Where(options => options.UserId == user.Id).ToList();
+            return context.Collections.Where(options => options.UserId == user.Id).AsQueryable();
         }
         #endregion
     }
