@@ -11,7 +11,10 @@
 - [_Hot Chocolate v12_](https://chillicream.com/docs/hotchocolate/get-started)
 
 ## Setup
-1. To get started, clone the project from Github.
+1. To get started, clone the project.
+```
+git clone https://github.com/WaadSulaiman/Todo.Api.git
+```
 2. Change the `ConnectionString` inside `Data/Configurations/Settings/AppSettings.cs`.
 3. Do a migration to get the database up and ready.
 ```C#
