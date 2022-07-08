@@ -12,7 +12,7 @@ using Todo.Api.Data.Helpers;
 namespace Todo.Api.Data.Services
 {
     /// <summary>
-    /// A service for authentication related operations. 
+    /// A service for authentication related operations.
     /// </summary>
     public class AuthService
     {
@@ -28,6 +28,7 @@ namespace Todo.Api.Data.Services
         }
 
         #region SignInAsync
+
         /// <summary>
         /// Used for signing a user in.
         /// </summary>
@@ -68,9 +69,11 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<Token>.Failure(ExceptionCodes.Code400BadRequest, validationResult.ErrorMessage());
         }
-        #endregion
+
+        #endregion SignInAsync
 
         #region RegisterAsync
+
         /// <summary>
         /// Used for registering a user.
         /// </summary>
@@ -111,6 +114,7 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<Token>.Failure(StatusCodes.Status400BadRequest, validationResult.ErrorMessage());
         }
-        #endregion
+
+        #endregion RegisterAsync
     }
 }

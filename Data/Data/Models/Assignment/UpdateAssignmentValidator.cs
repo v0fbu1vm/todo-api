@@ -9,7 +9,6 @@ namespace Todo.Api.Data.Data.Models.Assignment
     {
         public UpdateAssignmentValidator()
         {
-
             RuleFor(options => options.Id)
                 .Must(id => Guid.TryParse(id, out _));
 

@@ -16,7 +16,6 @@ namespace Todo.Api.Data.Configurations.Dependencies
     {
         public void Register(IServiceCollection services)
         {
-
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders();
@@ -57,7 +56,6 @@ namespace Todo.Api.Data.Configurations.Dependencies
                     {
                         OnTokenValidated = context =>
                         {
-
                             var userManager = context.HttpContext.RequestServices.GetRequiredService<UserManager<User>>();
 
                             var user = userManager.GetUserAsync(context.HttpContext.User);

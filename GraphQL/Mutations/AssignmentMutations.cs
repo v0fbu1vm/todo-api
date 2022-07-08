@@ -11,6 +11,7 @@ namespace Todo.Api.GraphQL.Mutations
     public class AssignmentMutations
     {
         #region CreateAssignmentAsync
+
         /// <summary>
         /// Adds a new <see cref="Assignment"/>.
         /// </summary>
@@ -36,9 +37,11 @@ namespace Todo.Api.GraphQL.Mutations
                 _ => Response<Assignment>.BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion CreateAssignmentAsync
 
         #region UpdateAssignmentAsync
+
         /// <summary>
         /// Updates an <see cref="Assignment"/>.
         /// </summary>
@@ -64,9 +67,11 @@ namespace Todo.Api.GraphQL.Mutations
                 _ => Response<Assignment>.BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion UpdateAssignmentAsync
 
         #region DeleteAssignmentAsync
+
         /// <summary>
         /// Deletes an <see cref="Assignment"/>.
         /// </summary>
@@ -91,6 +96,7 @@ namespace Todo.Api.GraphQL.Mutations
                 _ => Response<bool>.BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion DeleteAssignmentAsync
     }
 }

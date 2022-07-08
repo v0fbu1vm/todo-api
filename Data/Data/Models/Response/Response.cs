@@ -12,14 +12,17 @@ namespace Todo.Api.Data.Data.Models.Response
         /// Whether or not an operation was successful.
         /// </summary>
         public bool Succeeded { get; private set; }
+
         /// <summary>
         /// Represents the data returned from the operation
         /// </summary>
         public T? Data { get; private set; }
+
         /// <summary>
         /// Represents a message. To explain how the operation went.
         /// </summary>
         public string Message { get; private set; } = default!;
+
         /// <summary>
         /// Represents the code for the error.
         /// </summary>

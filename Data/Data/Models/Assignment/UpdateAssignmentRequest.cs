@@ -6,22 +6,27 @@
     public class UpdateAssignmentRequest
     {
         public string Id { get; set; } = default!;
+
         /// <summary>
         /// Represents the title of the assignment.
         /// </summary>
         public string? Title { get; set; }
+
         /// <summary>
         /// Represents the description of the assignment.
         /// </summary>
         public string? Description { get; set; }
+
         /// <summary>
         /// Represents when the assignment is scheduled to occur.
         /// </summary>
         public DateTime? DateScheduled { get; set; }
+
         /// <summary>
         /// Represents whether an assignment is complete or not.
         /// </summary>
         public bool? IsCompleted { get; set; }
+
         /// <summary>
         /// Represents whether an assignment is important or not.
         /// </summary>

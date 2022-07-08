@@ -13,10 +13,10 @@ namespace Todo.Api.Data.Services
     {
         public CollectionService(IDbContextFactory<DatabaseContext> dbContextFactory, IHttpContextAccessor contextAccessor) : base(dbContextFactory, contextAccessor)
         {
-
         }
 
         #region GetCollectionByIdAsync
+
         /// <summary>
         /// Gets a <see cref="Collection"/> by id.
         /// </summary>
@@ -30,9 +30,11 @@ namespace Todo.Api.Data.Services
                 .FirstOrDefaultAsync(options => options.Id == id && options.UserId == UserId())
                 : null;
         }
-        #endregion
+
+        #endregion GetCollectionByIdAsync
 
         #region GetCollectionByNameAsync
+
         /// <summary>
         /// Gets a <see cref="Collection"/> by name.
         /// </summary>
@@ -46,9 +48,11 @@ namespace Todo.Api.Data.Services
                 .FirstOrDefaultAsync(options => options.Name == name && options.UserId == UserId())
                 : null;
         }
-        #endregion
+
+        #endregion GetCollectionByNameAsync
 
         #region GetCollectionsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Collection"/>.
         /// </summary>
@@ -61,9 +65,11 @@ namespace Todo.Api.Data.Services
                 .Where(options => options.UserId == UserId())
                 .ToListAsync();
         }
-        #endregion
+
+        #endregion GetCollectionsAsync
 
         #region CreateCollectionAsync
+
         /// <summary>
         /// Adds a new <see cref="Collection"/>.
         /// </summary>
@@ -110,9 +116,11 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<Collection>.Failure(ExceptionCodes.Code400BadRequest, validationResult.ErrorMessage());
         }
-        #endregion
+
+        #endregion CreateCollectionAsync
 
         #region UpdateCollectionAsync
+
         /// <summary>
         /// Updates a <see cref="Collection"/>.
         /// </summary>
@@ -161,9 +169,11 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<Collection>.Failure(ExceptionCodes.Code400BadRequest, validationResult.ErrorMessage());
         }
-        #endregion
+
+        #endregion UpdateCollectionAsync
 
         #region DeleteCollectionAsync
+
         /// <summary>
         /// Deletes a <see cref="Collection"/>.
         /// </summary>
@@ -196,9 +206,11 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<bool>.Failure(ExceptionCodes.Code400BadRequest, "Invalid id");
         }
-        #endregion
+
+        #endregion DeleteCollectionAsync
 
         #region NameExistsAsync
+
         /// <summary>
         /// Checks whether a <see cref="Collection"/> with a certain name exists.
         /// </summary>
@@ -210,6 +222,7 @@ namespace Todo.Api.Data.Services
         {
             return await _dbContext.Collections.AnyAsync(options => options.Name.Equals(name) && options.UserId.Equals(UserId()));
         }
-        #endregion
+
+        #endregion NameExistsAsync
     }
 }

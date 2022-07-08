@@ -9,6 +9,7 @@ namespace Todo.Api.GraphQL.Resolvers
     public class AssignmentResolvers
     {
         #region GetUser
+
         /// <summary>
         /// Gets the <see cref="User"/> that owns this <see cref="Assignment"/>.
         /// </summary>
@@ -21,9 +22,11 @@ namespace Todo.Api.GraphQL.Resolvers
         {
             return context.Users.FirstOrDefault(options => options.Id == assignment.UserId);
         }
-        #endregion
+
+        #endregion GetUser
 
         #region GetCollection
+
         /// <summary>
         /// Gets the <see cref="Collection"/> that holds this <see cref="Assignment"/>.
         /// </summary>
@@ -36,6 +39,7 @@ namespace Todo.Api.GraphQL.Resolvers
         {
             return context.Collections.FirstOrDefault(options => options.Id == assignment.CollectionId);
         }
-        #endregion
+
+        #endregion GetCollection
     }
 }

@@ -20,6 +20,7 @@ namespace Todo.Api.Rest.Controllers
         }
 
         #region GetCollectionByIdAsync
+
         /// <summary>
         /// Gets a <see cref="Collection"/> by id.
         /// </summary>
@@ -35,9 +36,11 @@ namespace Todo.Api.Rest.Controllers
 
             return collection != null ? Ok(collection) : NotFound();
         }
-        #endregion
+
+        #endregion GetCollectionByIdAsync
 
         #region GetCollectionByNameAsync
+
         /// <summary>
         /// Gets a <see cref="Collection"/> by name.
         /// </summary>
@@ -53,9 +56,11 @@ namespace Todo.Api.Rest.Controllers
 
             return collection != null ? Ok(collection) : NotFound();
         }
-        #endregion
+
+        #endregion GetCollectionByNameAsync
 
         #region GetCollectionsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Collection"/>.
         /// </summary>
@@ -68,9 +73,11 @@ namespace Todo.Api.Rest.Controllers
         {
             return Ok(await _service.GetCollectionsAsync());
         }
-        #endregion
+
+        #endregion GetCollectionsAsync
 
         #region CreateCollectionAsync
+
         /// <summary>
         /// Adds a new <see cref="Collection"/>.
         /// </summary>
@@ -98,9 +105,11 @@ namespace Todo.Api.Rest.Controllers
                 _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion CreateCollectionAsync
 
         #region UpdateCollectionAsync
+
         /// <summary>
         /// Updates a <see cref="Collection"/>.
         /// </summary>
@@ -126,9 +135,11 @@ namespace Todo.Api.Rest.Controllers
                 _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion UpdateCollectionAsync
 
         #region DeleteCollectionAsync
+
         /// <summary>
         /// Deletes a <see cref="Collection"/>.
         /// </summary>
@@ -153,6 +164,7 @@ namespace Todo.Api.Rest.Controllers
                 _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion DeleteCollectionAsync
     }
 }

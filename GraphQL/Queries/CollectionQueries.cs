@@ -8,6 +8,7 @@ namespace Todo.Api.GraphQL.Queries
     public class CollectionQueries
     {
         #region GetCollectionByIdAsync
+
         /// <summary>
         /// Gets a <see cref="Collection"/> by id.
         /// </summary>
@@ -21,9 +22,11 @@ namespace Todo.Api.GraphQL.Queries
         {
             return await service.GetCollectionByIdAsync(id);
         }
-        #endregion
+
+        #endregion GetCollectionByIdAsync
 
         #region GetCollectionByNameAsync
+
         /// <summary>
         /// Gets a <see cref="Collection"/> by id.
         /// </summary>
@@ -37,9 +40,11 @@ namespace Todo.Api.GraphQL.Queries
         {
             return await service.GetCollectionByNameAsync(name);
         }
-        #endregion
+
+        #endregion GetCollectionByNameAsync
 
         #region GetCollectionsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Collection"/>.
         /// </summary>
@@ -52,6 +57,7 @@ namespace Todo.Api.GraphQL.Queries
         {
             return await service.GetCollectionsAsync();
         }
-        #endregion
+
+        #endregion GetCollectionsAsync
     }
 }

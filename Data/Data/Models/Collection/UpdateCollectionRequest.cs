@@ -9,6 +9,7 @@
         /// Represents the id of the collection.
         /// </summary>
         public string Id { get; set; } = default!;
+
         /// <summary>
         /// Represents the name of the collection.
         /// </summary>

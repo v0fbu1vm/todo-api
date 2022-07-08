@@ -9,6 +9,7 @@
         /// Represents the email of a user.
         /// </summary>
         public string Email { get; set; } = default!;
+
         /// <summary>
         /// Represents the password of a user.
         /// </summary>

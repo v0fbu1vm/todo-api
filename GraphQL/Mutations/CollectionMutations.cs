@@ -11,6 +11,7 @@ namespace Todo.Api.GraphQL.Mutations
     public class CollectionMutations
     {
         #region CreateCollectionAsync
+
         /// <summary>
         /// Adds a new <see cref="Collection"/>.
         /// </summary>
@@ -35,9 +36,11 @@ namespace Todo.Api.GraphQL.Mutations
                 _ => Response<Collection>.BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion CreateCollectionAsync
 
         #region UpdateCollectionAsync
+
         /// <summary>
         /// Updates a <see cref="Collection"/>.
         /// </summary>
@@ -63,9 +66,11 @@ namespace Todo.Api.GraphQL.Mutations
                 _ => Response<Collection>.BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion UpdateCollectionAsync
 
         #region DeleteCollectionAsync
+
         /// <summary>
         /// Deletes a <see cref="Collection"/>.
         /// </summary>
@@ -90,6 +95,7 @@ namespace Todo.Api.GraphQL.Mutations
                 _ => Response<bool>.BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion DeleteCollectionAsync
     }
 }

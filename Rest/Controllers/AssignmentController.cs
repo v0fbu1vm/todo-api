@@ -20,6 +20,7 @@ namespace Todo.Api.Rest.Controllers
         }
 
         #region GetAssignmentByIdAsync
+
         /// <summary>
         /// Gets an <see cref="Assignment"/> by id.
         /// </summary>
@@ -35,9 +36,11 @@ namespace Todo.Api.Rest.Controllers
 
             return assignment != null ? Ok(assignment) : NotFound();
         }
-        #endregion
+
+        #endregion GetAssignmentByIdAsync
 
         #region GetAssignmentsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Assignment"/>'s. Within a <see cref="Collection"/>.
         /// </summary>
@@ -51,9 +54,11 @@ namespace Todo.Api.Rest.Controllers
         {
             return Ok(await _service.GetAssignmentsAsync(collectionId));
         }
-        #endregion
+
+        #endregion GetAssignmentsAsync
 
         #region GetAssignmentsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Assignment"/>.
         /// </summary>
@@ -66,9 +71,11 @@ namespace Todo.Api.Rest.Controllers
         {
             return Ok(await _service.GetAssignmentsAsync());
         }
-        #endregion
+
+        #endregion GetAssignmentsAsync
 
         #region CreateAssignmentAsync
+
         /// <summary>
         /// Adds a new <see cref="Assignment"/>.
         /// </summary>
@@ -97,9 +104,11 @@ namespace Todo.Api.Rest.Controllers
                 _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion CreateAssignmentAsync
 
         #region UpdateAssignmentAsync
+
         /// <summary>
         /// Updates an <see cref="Assignment"/>.
         /// </summary>
@@ -125,9 +134,11 @@ namespace Todo.Api.Rest.Controllers
                 _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion UpdateAssignmentAsync
 
         #region DeleteAssignmentAsync
+
         /// <summary>
         /// Deletes an <see cref="Assignment"/>.
         /// </summary>
@@ -141,7 +152,7 @@ namespace Todo.Api.Rest.Controllers
         {
             var result = await _service.DeleteAssignmentAsync(id);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return NoContent();
             }
@@ -150,8 +161,9 @@ namespace Todo.Api.Rest.Controllers
             {
                 ExceptionCodes.Code404NotFound => NotFound(result.Fault.ErrorMessage),
                 _ => BadRequest(result.Fault.ErrorMessage)
-            }; 
+            };
         }
-        #endregion
+
+        #endregion DeleteAssignmentAsync
     }
 }

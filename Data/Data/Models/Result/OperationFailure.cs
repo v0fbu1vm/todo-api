@@ -10,6 +10,7 @@
         /// Represents an error code.
         /// </summary>
         public short ErrorCode { get; set; } = default!;
+
         /// <summary>
         /// Represents an error message.
         /// </summary>

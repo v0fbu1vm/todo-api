@@ -13,10 +13,10 @@ namespace Todo.Api.Data.Services
     {
         public AssignmentService(IDbContextFactory<DatabaseContext> dbContextFactory, IHttpContextAccessor contextAccessor) : base(dbContextFactory, contextAccessor)
         {
-
         }
 
         #region GetAssignmentByIdAsync
+
         /// <summary>
         /// Gets an <see cref="Assignment"/> by id.
         /// </summary>
@@ -30,9 +30,11 @@ namespace Todo.Api.Data.Services
                 .FirstOrDefaultAsync(options => options.Id == id && options.UserId == UserId())
                 : null;
         }
-        #endregion
+
+        #endregion GetAssignmentByIdAsync
 
         #region GetAssignmentsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Assignment"/>'s. Within a <see cref="Collection"/>.
         /// </summary>
@@ -47,9 +49,11 @@ namespace Todo.Api.Data.Services
                 .ToListAsync()
                 : new List<Assignment>();
         }
-        #endregion
+
+        #endregion GetAssignmentsAsync
 
         #region GetAssignmentsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Assignment"/>'s.
         /// </summary>
@@ -62,9 +66,11 @@ namespace Todo.Api.Data.Services
                 .Where(options => options.UserId == UserId())
                 .ToListAsync();
         }
-        #endregion
+
+        #endregion GetAssignmentsAsync
 
         #region CreateAssignmentAsync
+
         /// <summary>
         /// Adds a new <see cref="Assignment"/>.
         /// </summary>
@@ -116,9 +122,11 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<Assignment>.Failure(ExceptionCodes.Code400BadRequest, validationResult.ErrorMessage());
         }
-        #endregion
+
+        #endregion CreateAssignmentAsync
 
         #region UpdateAssignmentAsync
+
         /// <summary>
         /// Updates an <see cref="Assignment"/>.
         /// </summary>
@@ -144,7 +152,7 @@ namespace Todo.Api.Data.Services
                 {
                     var assignment = await _dbContext.Assignments.FirstOrDefaultAsync(options => options.Id == id && options.UserId == UserId());
 
-                    if(assignment != null)
+                    if (assignment != null)
                     {
                         assignment.Title = request.Title ?? assignment.Title;
                         assignment.Description = request.Description ?? assignment.Description;
@@ -166,9 +174,11 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<Assignment>.Failure(ExceptionCodes.Code400BadRequest, validationResult.ErrorMessage());
         }
-        #endregion
+
+        #endregion UpdateAssignmentAsync
 
         #region DeleteAssignmentAsync
+
         /// <summary>
         /// Deletes an <see cref="Assignment"/>.
         /// </summary>
@@ -201,9 +211,11 @@ namespace Todo.Api.Data.Services
 
             return OperationResult<bool>.Failure(ExceptionCodes.Code400BadRequest, "Invalid id");
         }
-        #endregion
+
+        #endregion DeleteAssignmentAsync
 
         #region CollectionExistsAsync
+
         /// <summary>
         /// Checks whether a <see cref="Collection"/> with a certain id exists.
         /// </summary>
@@ -215,6 +227,7 @@ namespace Todo.Api.Data.Services
         {
             return await _dbContext.Collections.AnyAsync(options => options.Id.Equals(id) && options.UserId.Equals(UserId()));
         }
-        #endregion
+
+        #endregion CollectionExistsAsync
     }
 }

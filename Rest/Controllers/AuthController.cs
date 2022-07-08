@@ -19,6 +19,7 @@ namespace Todo.Api.Rest.Controllers
         }
 
         #region SignInAsync
+
         /// <summary>
         /// Used for signing a user in.
         /// </summary>
@@ -43,9 +44,11 @@ namespace Todo.Api.Rest.Controllers
                 _ => BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion SignInAsync
 
         #region RegisterAsync
+
         /// <summary>
         /// Used for registering a user.
         /// </summary>
@@ -68,6 +71,7 @@ namespace Todo.Api.Rest.Controllers
 
             return BadRequest(result.Fault.ErrorMessage);
         }
-        #endregion
+
+        #endregion RegisterAsync
     }
 }

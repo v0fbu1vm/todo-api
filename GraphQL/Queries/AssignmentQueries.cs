@@ -8,6 +8,7 @@ namespace Todo.Api.GraphQL.Queries
     public class AssignmentQueries
     {
         #region GetAssignmentByIdAsync
+
         /// <summary>
         /// Gets an <see cref="Assignment"/> by id.
         /// </summary>
@@ -21,9 +22,11 @@ namespace Todo.Api.GraphQL.Queries
         {
             return await service.GetAssignmentByIdAsync(id);
         }
-        #endregion
+
+        #endregion GetAssignmentByIdAsync
 
         #region GetAssignmentsByCollectionIdAsync
+
         /// <summary>
         /// Gets a list of <see cref="Assignment"/>'s. Within a <see cref="Collection"/>.
         /// </summary>
@@ -37,9 +40,11 @@ namespace Todo.Api.GraphQL.Queries
         {
             return await service.GetAssignmentsAsync(collectionId);
         }
-        #endregion
+
+        #endregion GetAssignmentsByCollectionIdAsync
 
         #region GetAssignmentsAsync
+
         /// <summary>
         /// Gets a list of <see cref="Assignment"/>'s.
         /// </summary>
@@ -52,6 +57,7 @@ namespace Todo.Api.GraphQL.Queries
         {
             return await service.GetAssignmentsAsync();
         }
-        #endregion
+
+        #endregion GetAssignmentsAsync
     }
 }

@@ -11,6 +11,7 @@ namespace Todo.Api.GraphQL.Mutations
     public class AuthMutations
     {
         #region SignInAsync
+
         /// <summary>
         /// Used for signing a user in.
         /// </summary>
@@ -35,9 +36,11 @@ namespace Todo.Api.GraphQL.Mutations
                 _ => Response<Token>.BadRequest(result.Fault.ErrorMessage),
             };
         }
-        #endregion
+
+        #endregion SignInAsync
 
         #region RegisterAsync
+
         /// <summary>
         /// Used for registering a user.
         /// </summary>
@@ -57,6 +60,7 @@ namespace Todo.Api.GraphQL.Mutations
 
             return Response<Token>.BadRequest(result.Fault.ErrorMessage);
         }
-        #endregion
+
+        #endregion RegisterAsync
     }
 }

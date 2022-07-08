@@ -14,11 +14,13 @@ namespace Todo.Api.Data.Data.Entities
         [Required]
         [MaxLength(450)]
         public string Id { get; set; } = Guid.NewGuid().ToString();
+
         /// <summary>
         /// Represents when a record was added to the system.
         /// </summary>
         [Required]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
+
         /// <summary>
         /// Represents when a record was modified.
         /// </summary>

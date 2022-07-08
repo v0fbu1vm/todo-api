@@ -11,6 +11,7 @@ namespace Todo.Api.Data.Helpers
     public class TokenProvider
     {
         #region GenerateToken
+
         /// <summary>
         /// Generates a json web token for a given <see cref="User"/>.
         /// </summary>
@@ -47,6 +48,7 @@ namespace Todo.Api.Data.Helpers
                 ExpirationDate = expires,
             };
         }
-        #endregion
+
+        #endregion GenerateToken
     }
 }

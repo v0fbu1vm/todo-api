@@ -12,6 +12,7 @@ namespace Todo.Api.Data.Data.Models.Token
         /// Represents the json web token.
         /// </summary>
         public string Jwt { get; set; } = default!;
+
         /// <summary>
         /// Represents the expiration date of the imbedded jwt.
         /// </summary>

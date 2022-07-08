@@ -9,10 +9,12 @@
         /// Represents the name of the user.
         /// </summary>
         public string Name { get; set; } = default!;
+
         /// <summary>
         /// Represents the email of the user.
         /// </summary>
         public string Email { get; set; } = default!;
+
         /// <summary>
         /// Represents the password of the user.
         /// </summary>

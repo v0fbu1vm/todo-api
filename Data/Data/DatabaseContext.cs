@@ -8,7 +8,6 @@ namespace Todo.Api.Data.Data
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-
         }
 
         public DbSet<Assignment> Assignments => Set<Assignment>();
